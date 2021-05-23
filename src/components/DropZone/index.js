@@ -13,14 +13,10 @@ export default function DropZone() {
             const reader = new FileReader()
             reader.onload = () => {
                 const result = reader.result
-                const {canvas, lines, rectangles, fillCanvas} = parseInput(result)
                 appState.setState(state => {
                     return {
                         ...state,
-                        canvas,
-                        lines,
-                        rectangles,
-                        fillCanvas,
+                        ...parseInput(result)
                     }
                 })
             }

@@ -7,21 +7,18 @@ const parseInput = (str) => {
     const matchedCanvas = str.match(canvasRegex)
     const matchedFillOptions = str.match(fillerRegex)
     return {
-        canvas: clearString(matchedCanvas ? matchedCanvas[0] : null),
-        lines: clearString(str.match(lineRegex)),
-        rectangles: clearString(str.match(rectangleRegex)),
-        fillCanvas: {
-            target:  clearString(matchedFillOptions ? matchedFillOptions[0] : null).split(',').slice(0,2).join(','),
-            filler:  clearString(matchedFillOptions ? matchedFillOptions[0] : null).split(',')[2]
-        }
+        canvas: clearString(matchedCanvas ? [matchedCanvas[0]] : null),
+        drawLine: clearString(str.match(lineRegex)),
+        drawRectangle: clearString(str.match(rectangleRegex)),
+        fillCanvas: matchedFillOptions ? clearString(matchedFillOptions[0]) : null
     }
 }
 const clearString = (str) => {
     if(!str) return null
 const clearRegex = /^\D\s/;
     if(Array.isArray(str)) {
-        return str.map(item => item.replace(clearRegex, "").replace(/ /g, ',') )
+        return str.map(item => item.replace(clearRegex, "").replace(/ /g, ',').split(',') )
     }
-    return str.replace(clearRegex, "").replace(/ /g, ',')
+    return str.replace(clearRegex, "").replace(/ /g, ',').split(',')
 }
 export default parseInput;

@@ -5,9 +5,10 @@ const Container = styled.div`
   max-width: 1400px;
   box-sizing: border-box;
   margin: 0 auto;
+  min-height: ${props => props.height};
   display: ${props => props.flex ? 'flex': 'block'};
   justify-content: ${props => props.justify};
   align-items: ${props => props.align};
-  padding: 0 20px 0 20px;
+  padding: 20px;
 `
 export default Container
