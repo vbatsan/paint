@@ -34,7 +34,7 @@ export default function PaintBoard({steps, canvasSize, appState, history, setHis
         const element = document.createElement("a");
         const file = new Blob([parseDataToFile(history).join('')], {type: 'text/plain'});
         element.href = URL.createObjectURL(file);
-        element.download = "myFile.txt";
+        element.download = "output.txt";
         document.body.appendChild(element);
         element.click();
     }
