@@ -10,7 +10,7 @@ const parseInput = (str) => {
         canvas: clearString(matchedCanvas ? [matchedCanvas[0]] : null),
         drawLine: clearString(str.match(lineRegex)),
         drawRectangle: clearString(str.match(rectangleRegex)),
-        fillCanvas: matchedFillOptions ? clearString(matchedFillOptions[0]) : null
+        fillCanvas:  clearString(matchedFillOptions ? [matchedFillOptions[0]] : null)
     }
 }
 const clearString = (str) => {

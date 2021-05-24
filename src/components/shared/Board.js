@@ -10,7 +10,7 @@ const showAnimation = keyframes`
 `
 const Board = styled.div`
   min-width: 300px;
-  min-height: 100%;
+  min-height: 300px;
   border-radius: 5px;
   box-sizing: border-box;
   padding: 20px 50px 20px 50px;
