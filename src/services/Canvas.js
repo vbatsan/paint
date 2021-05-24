@@ -57,7 +57,7 @@ export class CanvasService {
         function fill() {
             while (queue.length > 0) {
                 const current = queue.shift()
-                if([current[0]] < 0 || [current[0]]  >= canvas[0].length -1) continue
+                if([current[0]] < 0 || [current[0]]  >= canvas[0].length) continue
                 if([current[1]]  < 0 || current[1]  >= canvas.length) continue
                 if(canvas[current[1]][current[0]].isEmpty && !canvas[current[1]][current[0]].isColored) {
                     canvas[current[1]][current[0]].isColored = true
