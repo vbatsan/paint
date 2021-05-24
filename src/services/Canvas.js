@@ -48,4 +48,34 @@ export class CanvasService {
         }
         return newCanvas;
     }
+
+     validatePoints (step, args) {
+        let result = {success: true}
+        args.forEach((el, index) => {
+            const item = parseInt(el)
+            if(item < 1) return result = {
+                success: false,
+                message: `Coords can not be less than 1 (${args})`,
+            };
+            if((index % 2 === 0) && (item > this.rows)) return result = {
+                success: false,
+                message: `Not such point on the canvas ${args[index]}, ${args[index + 1]}`,
+            };
+            if((index % 2 !== 0) && (item > this.cols)){
+                return result = {
+                    success: false,
+                    message: `Not such point on the canvas ${args[index - 1]}, ${args[index]}`
+                }}
+        })
+         if(step === 'drawLine') {
+             if((+args[0] !== +args[2]) && (+args[1] !== +args[3])) {
+                 console.log(+args[0] !== +args[2],+args[1] !== +args[3] )
+                  result = {
+                     success: false,
+                     message: `Line ${args} should be vertical or horizontal`
+                 }
+             }
+         }
+        return result
+    }
 }
