@@ -12,7 +12,6 @@ export default function PaintBoard({steps, canvasSize, appState, history, setHis
     const [error, setError] = useState(null)
     const canvas = useMemo(() => new CanvasService(...canvasSize.flat()), [canvasSize])
     const containerRef = useRef()
-
     useEffect(() => {
         const arr = []
         steps.forEach(step => {

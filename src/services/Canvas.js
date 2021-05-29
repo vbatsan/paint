@@ -48,10 +48,11 @@ export class CanvasService {
 
     fillCanvas(x, y, color) {
         const canvas = this.copyCanvas()
-            const numX = parseInt(x) - 1
-            const numY = parseInt(y) - 1
-            const queue = []
-            queue.push([numX, numY])
+        const numX = parseInt(x) - 1
+        const numY = parseInt(y) - 1
+        const currentColor = canvas[numY][numX].view;
+        const queue = []
+        queue.push([numX, numY])
 
         fill()
         function fill() {
@@ -59,8 +60,7 @@ export class CanvasService {
                 const current = queue.shift()
                 if([current[0]] < 0 || [current[0]]  >= canvas[0].length) continue
                 if([current[1]]  < 0 || current[1]  >= canvas.length) continue
-                if(canvas[current[1]][current[0]].isEmpty && !canvas[current[1]][current[0]].isColored) {
-                    canvas[current[1]][current[0]].isColored = true
+                if(canvas[current[1]][current[0]].view === currentColor) {
                     canvas[current[1]][current[0]].view = color
                     queue.push([current[0], current[1] + 1])
                     queue.push([current[0] + 1, current[1]])
