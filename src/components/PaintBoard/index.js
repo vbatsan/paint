@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo, useRef} from 'react'
+import React, {useState, useContext, useEffect, useMemo, useRef} from 'react'
 
 import Board from "../shared/Board";
 import Canvas from "../Canvas/CanvasUI";
@@ -7,9 +7,11 @@ import * as uuid from "uuid";
 import {CanvasService} from "../../services/Canvas";
 import Notification from "../shared/Notification";
 import parseDataToFile from "../../utils/parseDataToFile";
+import {HistoryContext} from "../../context/historyContext";
 
-export default function PaintBoard({steps, canvasSize, appState, history, setHistory}) {
+export default function PaintBoard({steps, canvasSize, appState}) {
     const [error, setError] = useState(null)
+    const {history, setHistory} = useContext(HistoryContext)
     const canvas = useMemo(() => new CanvasService(...canvasSize.flat()), [canvasSize])
     const containerRef = useRef()
     useEffect(() => {
@@ -42,13 +44,13 @@ export default function PaintBoard({steps, canvasSize, appState, history, setHis
         <Board ref={containerRef}>
             {error && <Notification>{error.message}</Notification>}
             {history.map((item, index) => (
-                <Canvas id={index} cols={canvasSize[0][0]}  key={uuid.v4()}>
+                <Canvas role={'canvas'} id={index} cols={canvasSize[0][0]}  key={uuid.v4()}>
                     {item.flat().map(pixel => (
                         <Pixel width={(+canvasSize[0][0] > 100) ? 4 : 8} key={pixel.id} {...pixel}/>
                     ))}
                 </Canvas>
             ))}
-            {history && <button onClick={downloadDoc}>download</button>}
+            {history.length > 0 && <button className={'download-btn'} onClick={downloadDoc}>download</button>}
         </Board>
     )
 }

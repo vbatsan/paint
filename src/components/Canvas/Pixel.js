@@ -9,7 +9,7 @@ const StyledPixel = styled.div`
 `
 
 export default function Pixel (props) {
-   return <StyledPixel width={props.width}>
+   return <StyledPixel role={'pixel'} width={props.width}>
        {props.view}
     </StyledPixel>
 }

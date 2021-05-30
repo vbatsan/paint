@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import DeleteButton from "./DeleteButton";
 import deleteIcon from './delete-icon-256.png'
+import {HistoryContext} from "../../context/historyContext";
+import {AppContext} from "../../context/appContext";
 
-export default function DeleteBtn ({setState, setHistory}) {
+export default function DeleteBtn () {
+    const {setHistory} = useContext(HistoryContext)
+    const {setState} = useContext(AppContext)
     const handleClick = () => {
         setState(state => ({
             ...state,

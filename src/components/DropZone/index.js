@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useState} from 'react';
-import {AppContext} from "../../appContext";
+import {AppContext} from "../../context/appContext";
 import {useDropzone} from 'react-dropzone';
 
 import {DropWrapper} from "./DropWrapper";
