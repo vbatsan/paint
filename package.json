@@ -38,7 +38,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@react-mock/state": "^0.1.8"
-  }
+  "devDependencies": {}
 }
